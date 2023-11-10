@@ -1,5 +1,6 @@
-$orange: #f44336;
-$green: #8bc34a;
+$red: #f44336;
+$green: #96d152;
+$gray: #c8e4ed;
 
 .game {
   color: $green;
@@ -30,16 +31,16 @@ $green: #8bc34a;
 .square {
   width: 40px;
   height: 40px;
-  border: 1px solid #5d5757;
+  border: 1px solid #6375ff;
   box-sizing: border-box;
   font-size: 2rem;
   text-align: center;
-  background-color: $green;
+  background-color: $gray;
   color: #fff;
   margin: auto;
   &.invalid {
-    border-color: $orange;
-    color: $orange;
+    border-color: $red;
+    color: $red;
   }
 }
 
