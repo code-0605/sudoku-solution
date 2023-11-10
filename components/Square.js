@@ -49,7 +49,6 @@ const Square = (props) => {
         val
       );
     }
-    console.log(newInvalidSquares);
     props.setInvalidSquares(newInvalidSquares);
   };
 

@@ -1,6 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sudoku Solution Application
+
+## Solve 9x9 basic level Sudoku puzzles
 
 ## Getting Started
+
+```bash
+npm install
+# or
+yarn install
+```
 
 First, run the development server:
 
