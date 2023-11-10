@@ -1,5 +1,4 @@
 "use client";
-import styles from "../styles/main.module.scss";
 import { useState } from "react";
 import Board from "./Board";
 import Square from "./Square";
@@ -12,6 +11,8 @@ const Game = () => {
   const [squares, setSquares] = useState(initSudoku);
   const [userInput, setUserInput] = useState(initSudoku);
   const [solved, setSolved] = useState(false);
+  const [invalidSquares, setInvalidSquares] = useState([]);
+  const [canSolve, setCanSolve] = useState(true);
 
   return (
     <>
@@ -31,13 +32,24 @@ const Game = () => {
                 setInvalid,
                 userInput,
                 setUserInput,
+                invalidSquares,
+                setInvalidSquares,
+                setCanSolve,
               }}
             />
           ))
         )}
       </Board>
       <Solve
-        {...{ squares, setSquares, setSolved, solved, invalid, setUserInput }}
+        {...{
+          squares,
+          setSquares,
+          setSolved,
+          solved,
+          invalid,
+          setUserInput,
+          canSolve,
+        }}
       />
       <Toaster />
     </>

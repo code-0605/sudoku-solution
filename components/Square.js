@@ -10,9 +10,10 @@ const Square = (props) => {
   const showInvalidInputToast = () =>
     toast.error("Invalid input", { position: "top-right" });
 
-  const handleInputValue = (flag, val) => {
+  const handleInputValue = (flag, canSolve, val) => {
     let newSquares = props.squares;
     let newUserInput = props.userInput;
+    props.setCanSolve(canSolve);
     setInvalid(flag);
     props.setInvalid(flag);
     newSquares[props.rowIdx][props.colIdx] = val;
@@ -24,19 +25,32 @@ const Square = (props) => {
   const handleChange = (e) => {
     e.preventDefault();
     let newSquares = props.squares;
-    let row = props.rowIdx;
-    let col = props.colIdx;
+    let newInvalidSquares = props.invalidSquares;
+    const selectedSqure = [props.rowIdx, props.colIdx];
     if (!e.target.value?.length) {
       handleInputValue(false, "");
       return;
     }
     const val = sanitizeInput(e);
-    if (val === -1 || !isValid(newSquares, row, col, val)) {
+    if (
+      val === -1 ||
+      !isValid(newSquares, selectedSqure[0], selectedSqure[1], val)
+    ) {
+      newInvalidSquares.push(selectedSqure);
       showInvalidInputToast();
-      handleInputValue(true, e.target.value);
+      handleInputValue(true, false, e.target.value);
     } else {
-      handleInputValue(false, val);
+      newInvalidSquares = newInvalidSquares.filter(
+        (arr) => !arr.every((val, index) => val === selectedSqure[index])
+      );
+      handleInputValue(
+        false,
+        newInvalidSquares.length === 0 ? true : false,
+        val
+      );
     }
+    console.log(newInvalidSquares);
+    props.setInvalidSquares(newInvalidSquares);
   };
 
   return (
